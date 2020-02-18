@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119124476-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-119124476-1');
+	</script>
+
+
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
+  <title>JSON Editor - view, edit and format JSON online</title>
+
+  <meta name="keywords" content="json, editor, formatter, online, format, parser, json editor, json editor online, online json editor, javascript, javascript object notation, tools, tool, json tools, treeview, open source, free, json parser, json parser online, json formatter, json formatter online, online json formatter, online json parser, format json online">
+	
+</head>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+<div class="wrapper container" >
+		<div class="row" >
+			<div class="col-md-1">&nbsp;</div>
+		    <div class="col-md-9"><h2>JSON Formatter</h2></div>
+		    <div class="col-md-1">&nbsp;</div>
+        </div> 	
+
+		<div class="row" >
+			<div class="col-md-1">&nbsp;</div>
+			<div class="col-md-10" ng-app="myApp" ng-controller="jsonFormatController">
+			
+			<!-- <div class="panel panel-default" style="background-color:gray"'> -->
+			
+				<form class="form-horizontal">
+					<textarea id="myTextArea" ng-model="jsonText"  class="form-control bg-primary text-primary" rows="20"></textarea>
+					<!-- <button onclick="prettyPrint()">Pretty Print</button> -->
+					</br>
+					<button type="submit" ng-click="getPrettyJSON()" class="btn btn-default bg-primary">Format / Beautify</button>	
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<button type="submit" ng-click="getMinifyJSON()" class="btn btn-default bg-primary">Minify / Compact</button>						
+				</form>
+			<!-- </div> -->
+			</div>
+			<div class="col-md-1">&nbsp;</div>
+		</div>
+</div>
+	
+	<script>
+		var app = angular.module('myApp', []);
+		app.controller('jsonFormatController', function($scope, $http) {
+			$scope.getPrettyJSON= function() {
+		    	$scope.jsonText = JSON.stringify(JSON.parse($scope.jsonText), undefined, 4);
+			}
+			$scope.getMinifyJSON= function() {
+		    	$scope.jsonText = JSON.stringify(JSON.parse($scope.jsonText));
+			}
+		});
+	</script>
+
+</body>
+</html>
+
